@@ -5,6 +5,9 @@
 #include <GLFW/glfw3.h>
 
 #include <vector>
+#include <stdexcept>
+
+namespace plaster {
 
 VulkanContext::VulkanContext(Window* window)
     : m_instance(VK_NULL_HANDLE), m_physicalDevice(VK_NULL_HANDLE),
@@ -49,16 +52,26 @@ void VulkanContext::createInstance() {
     createInfo.ppEnabledExtensionNames = glfwExtensions;
     createInfo.enabledLayerCount = 0;
 
-    vkCreateInstance(&createInfo, nullptr, &m_instance);
+    VkResult result = vkCreateInstance(&createInfo, nullptr, &m_instance);
+    if (result != VK_SUCCESS) {
+        throw std::runtime_error("Failed to create Vulkan instance");
+    }
 }
 
 void VulkanContext::createSurface() {
-    glfwCreateWindowSurface(m_instance, m_window->getHandle(), nullptr, &m_surface);
+    VkResult result = glfwCreateWindowSurface(m_instance, m_window->getHandle(), nullptr, &m_surface);
+    if (result != VK_SUCCESS) {
+        throw std::runtime_error("Failed to create window surface");
+    }
 }
 
 void VulkanContext::pickPhysicalDevice() {
     uint32_t deviceCount = 0;
     vkEnumeratePhysicalDevices(m_instance, &deviceCount, nullptr);
+
+    if (deviceCount == 0) {
+        throw std::runtime_error("Failed to find GPUs with Vulkan support");
+    }
 
     std::vector<VkPhysicalDevice> devices(deviceCount);
     vkEnumeratePhysicalDevices(m_instance, &deviceCount, devices.data());
@@ -81,6 +94,8 @@ void VulkanContext::pickPhysicalDevice() {
             }
         }
     }
+    
+    throw std::runtime_error("Failed to find suitable GPU");
 }
 
 void VulkanContext::createLogicalDevice() {
@@ -105,8 +120,14 @@ void VulkanContext::createLogicalDevice() {
   createInfo.ppEnabledExtensionNames = extensionNames;
   createInfo.enabledLayerCount = 0;
 
-  vkCreateDevice(m_physicalDevice, &createInfo, nullptr, &m_device);
+  VkResult result = vkCreateDevice(m_physicalDevice, &createInfo, nullptr, &m_device);
+  if (result != VK_SUCCESS) {
+      throw std::runtime_error("Failed to create logical device");
+  }
+  
   vkGetDeviceQueue(m_device, m_graphicsQueueFamily, 0, &m_graphicsQueue);
 }
+
+} // namespace plaster
 
 

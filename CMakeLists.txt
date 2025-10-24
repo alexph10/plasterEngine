@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.20)
 project(plasterEngine)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -21,19 +21,33 @@ add_subdirectory(external/glm)
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${VULKAN_INCLUDE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/external/imgui
+    ${CMAKE_CURRENT_SOURCE_DIR}/external/imgui/backends
+)
+
+set(IMGUI_SOURCES
+    external/imgui/imgui.cpp
+    external/imgui/imgui_demo.cpp
+    external/imgui/imgui_draw.cpp
+    external/imgui/imgui_widgets.cpp
+    external/imgui/imgui_tables.cpp
+    external/imgui/backends/imgui_impl_vulkan.cpp
+    external/imgui/backends/imgui_impl_glfw.cpp
 )
 
 # Engine library sources
 set(ENGINE_SOURCES
     src/Core/Window.cpp
     src/Core/Application.cpp
+    src/Core/Input.cpp
     src/Graphics/VulkanContext.cpp
     src/Graphics/Renderer.cpp
     src/Engine.cpp
+    src/Graphics/ImGuiManager.cpp
 )
 
 # Create engine library
-add_library(plasterEngine STATIC ${ENGINE_SOURCES})
+add_library(plasterEngine STATIC ${ENGINE_SOURCES} ${IMGUI_SOURCES})
 
 # Link dependencies
 target_link_libraries(plasterEngine PUBLIC

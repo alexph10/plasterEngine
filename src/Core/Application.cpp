@@ -1,7 +1,10 @@
 #include "Core/Application.h"
 #include "Core/Window.h"
+#include "Core/Input.h"
 #include "Graphics/VulkanContext.h"
 #include "Graphics/Renderer.h"
+
+namespace plaster {
 
 Application::Application()
     : m_window(nullptr), m_vulkanContext(nullptr), m_renderer(nullptr) {
@@ -20,7 +23,10 @@ Application::~Application() {
 void Application::run() {
     while (!m_window->shouldClose()) {
         m_window->pollEvents();
+        Input::Update();
         m_renderer->render();
     }
 }
+
+} // namespace plaster
 

@@ -5,6 +5,8 @@
 
 struct GLFWwindow;
 
+namespace plaster {
+
 class Window {
 public:
   Window(uint32_t width, uint32_t height, const std::string& title);
@@ -22,4 +24,6 @@ private:
   uint32_t m_width;
   uint32_t m_height;
 };
+
+} // namespace plaster
 

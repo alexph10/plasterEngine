@@ -1,5 +1,7 @@
 #pragma once
 
+namespace plaster {
+
 class Window;
 class VulkanContext;
 class Renderer;
@@ -16,3 +18,5 @@ private:
   VulkanContext* m_vulkanContext;
   Renderer* m_renderer;
 };
+
+} // namespace plaster

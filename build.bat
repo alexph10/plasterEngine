@@ -12,4 +12,8 @@ REM Return to project root
 cd .. 
 
 REM Execute the executable
+echo Running executable...
 .\build\Debug\plasterEngine_app.exe
+echo.
+echo Executable exited with code: %ERRORLEVEL%
+pause

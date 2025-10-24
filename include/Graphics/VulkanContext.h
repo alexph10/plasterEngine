@@ -2,6 +2,8 @@
 #include <vulkan/vulkan.h>
 #include <cstdint>
 
+namespace plaster {
+
 class Window;
 
 class VulkanContext {
@@ -29,3 +31,5 @@ private:
   void createLogicalDevice();
   void createSurface();
 };
+
+} // namespace plaster
