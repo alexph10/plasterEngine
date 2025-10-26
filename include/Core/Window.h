@@ -19,10 +19,15 @@ public:
   GLFWwindow* getHandle() const { return m_window; }
   uint32_t getWidth() const { return m_width; }
   uint32_t getHeight() const { return m_height; }
+  
+  void toggleFullscreen();
+  bool isFullscreen() const { return m_isFullscreen; }
+  
 private:
   GLFWwindow* m_window;
   uint32_t m_width;
   uint32_t m_height;
+  bool m_isFullscreen = false;
 };
 
 } // namespace plaster

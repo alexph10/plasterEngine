@@ -91,95 +91,115 @@ void ImGuiManager::setTheme() {
   ImGuiStyle& style = ImGui::GetStyle();
   ImVec4* colors = style.Colors;
 
-  // Colors from your reference image
-  ImVec4 radiantYellow = ImVec4(0.996f, 1.0f, 0.11f, 1.0f);      // #feff1d
-  ImVec4 toxicYellow = ImVec4(1.0f, 1.0f, 0.07f, 1.0f);          // #ffff1b
-  ImVec4 starkWhite = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);            // #ffffff
-  ImVec4 deepBlack = ImVec4(0.04f, 0.04f, 0.04f, 1.0f);          // #0a0a0a
-  ImVec4 charcoal = ImVec4(0.10f, 0.10f, 0.10f, 1.0f);           // #1a1a1a
-  ImVec4 darkGray = ImVec4(0.16f, 0.16f, 0.16f, 1.0f);           // #2a2a2a
+  // Acrylic Orange color palette
+  ImVec4 vibrantOrange = ImVec4(1.0f, 0.6f, 0.2f, 1.0f);
+  ImVec4 softOrange = ImVec4(1.0f, 0.7f, 0.3f, 1.0f);
+  ImVec4 deepOrange = ImVec4(0.9f, 0.4f, 0.1f, 1.0f);
+  ImVec4 darkBase = ImVec4(0.06f, 0.06f, 0.06f, 0.85f);
+  ImVec4 darkerBase = ImVec4(0.04f, 0.04f, 0.04f, 0.90f);
+  ImVec4 accentDark = ImVec4(0.12f, 0.12f, 0.12f, 0.80f);
+  ImVec4 starkWhite = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
+  ImVec4 transparent = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
 
   // Background & Surface colors
-  colors[ImGuiCol_WindowBg] = charcoal;
-  colors[ImGuiCol_ChildBg] = deepBlack;
-  colors[ImGuiCol_PopupBg] = charcoal;
-  colors[ImGuiCol_Border] = darkGray;
-  colors[ImGuiCol_BorderShadow] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
+  colors[ImGuiCol_WindowBg] = darkBase;
+  colors[ImGuiCol_ChildBg] = ImVec4(0.04f, 0.04f, 0.04f, 0.5f);
+  colors[ImGuiCol_PopupBg] = darkerBase;
+  colors[ImGuiCol_Border] = ImVec4(vibrantOrange.x, vibrantOrange.y, vibrantOrange.z, 0.3f);
+  colors[ImGuiCol_BorderShadow] = transparent;
+
+  // Title bar colors
+  colors[ImGuiCol_TitleBg] = accentDark;
+  colors[ImGuiCol_TitleBgActive] = ImVec4(0.15f, 0.15f, 0.15f, 0.85f);
+  colors[ImGuiCol_TitleBgCollapsed] = ImVec4(0.04f, 0.04f, 0.04f, 0.7f);
 
   // Text colors
   colors[ImGuiCol_Text] = starkWhite;
   colors[ImGuiCol_TextDisabled] = ImVec4(0.6f, 0.6f, 0.6f, 1.0f);
 
   // Button colors
-  colors[ImGuiCol_Button] = darkGray;
-  colors[ImGuiCol_ButtonHovered] = radiantYellow;
-  colors[ImGuiCol_ButtonActive] = toxicYellow;
+  colors[ImGuiCol_Button] = ImVec4(accentDark.x, accentDark.y, accentDark.z, 0.6f);
+  colors[ImGuiCol_ButtonHovered] = vibrantOrange;
+  colors[ImGuiCol_ButtonActive] = deepOrange;
 
-  // Header/Title colors
-  colors[ImGuiCol_Header] = darkGray;
-  colors[ImGuiCol_HeaderHovered] = radiantYellow;
-  colors[ImGuiCol_HeaderActive] = toxicYellow;
+  // Header colors
+  colors[ImGuiCol_Header] = ImVec4(accentDark.x, accentDark.y, accentDark.z, 0.7f);
+  colors[ImGuiCol_HeaderHovered] = vibrantOrange;
+  colors[ImGuiCol_HeaderActive] = deepOrange;
 
-  // Selection colors
-  colors[ImGuiCol_FrameBg] = charcoal;
-  colors[ImGuiCol_FrameBgHovered] = darkGray;
-  colors[ImGuiCol_FrameBgActive] = radiantYellow;
+  // Frame/Input colors
+  colors[ImGuiCol_FrameBg] = ImVec4(0.08f, 0.08f, 0.08f, 0.6f);
+  colors[ImGuiCol_FrameBgHovered] = ImVec4(0.12f, 0.12f, 0.12f, 0.7f);
+  colors[ImGuiCol_FrameBgActive] = ImVec4(vibrantOrange.x, vibrantOrange.y, vibrantOrange.z, 0.4f);
 
   // Scrollbar colors
-  colors[ImGuiCol_ScrollbarBg] = charcoal;
-  colors[ImGuiCol_ScrollbarGrab] = darkGray;
-  colors[ImGuiCol_ScrollbarGrabHovered] = radiantYellow;
-  colors[ImGuiCol_ScrollbarGrabActive] = toxicYellow;
+  colors[ImGuiCol_ScrollbarBg] = ImVec4(0.02f, 0.02f, 0.02f, 0.4f);
+  colors[ImGuiCol_ScrollbarGrab] = accentDark;
+  colors[ImGuiCol_ScrollbarGrabHovered] = vibrantOrange;
+  colors[ImGuiCol_ScrollbarGrabActive] = deepOrange;
 
   // Slider colors
-  colors[ImGuiCol_SliderGrab] = radiantYellow;
-  colors[ImGuiCol_SliderGrabActive] = toxicYellow;
+  colors[ImGuiCol_SliderGrab] = vibrantOrange;
+  colors[ImGuiCol_SliderGrabActive] = deepOrange;
 
-  // Checkbox/Radio colors
-  colors[ImGuiCol_CheckMark] = radiantYellow;
+  // Checkbox colors
+  colors[ImGuiCol_CheckMark] = vibrantOrange;
 
-  // Tab colors
-  colors[ImGuiCol_Tab] = charcoal;
-  colors[ImGuiCol_TabHovered] = radiantYellow;
-  colors[ImGuiCol_TabActive] = toxicYellow;
-  colors[ImGuiCol_TabUnfocused] = charcoal;
-  colors[ImGuiCol_TabUnfocusedActive] = charcoal;
+  // Tab colors (TRANSPARENT)
+  colors[ImGuiCol_Tab] = ImVec4(0.08f, 0.08f, 0.08f, 0.3f);
+  colors[ImGuiCol_TabHovered] = ImVec4(vibrantOrange.x, vibrantOrange.y, vibrantOrange.z, 0.6f);
+  colors[ImGuiCol_TabActive] = ImVec4(vibrantOrange.x, vibrantOrange.y, vibrantOrange.z, 0.5f);
+  colors[ImGuiCol_TabUnfocused] = ImVec4(0.04f, 0.04f, 0.04f, 0.2f);
+  colors[ImGuiCol_TabUnfocusedActive] = ImVec4(0.08f, 0.08f, 0.08f, 0.4f);
 
-  // Separator/Divider colors
-  colors[ImGuiCol_Separator] = darkGray;
-  colors[ImGuiCol_SeparatorHovered] = radiantYellow;
-  colors[ImGuiCol_SeparatorActive] = toxicYellow;
+  // Separator colors
+  colors[ImGuiCol_Separator] = ImVec4(vibrantOrange.x, vibrantOrange.y, vibrantOrange.z, 0.3f);
+  colors[ImGuiCol_SeparatorHovered] = vibrantOrange;
+  colors[ImGuiCol_SeparatorActive] = deepOrange;
 
-  // Plot/Graph colors
-  colors[ImGuiCol_PlotLines] = radiantYellow;
-  colors[ImGuiCol_PlotLinesHovered] = toxicYellow;
-  colors[ImGuiCol_PlotHistogram] = radiantYellow;
-  colors[ImGuiCol_PlotHistogramHovered] = toxicYellow;
+  // Resize grip colors
+  colors[ImGuiCol_ResizeGrip] = ImVec4(vibrantOrange.x, vibrantOrange.y, vibrantOrange.z, 0.2f);
+  colors[ImGuiCol_ResizeGripHovered] = ImVec4(vibrantOrange.x, vibrantOrange.y, vibrantOrange.z, 0.6f);
+  colors[ImGuiCol_ResizeGripActive] = vibrantOrange;
 
-  // Drag & Drop colors
-  colors[ImGuiCol_DragDropTarget] = toxicYellow;
+  // Plot colors
+  colors[ImGuiCol_PlotLines] = vibrantOrange;
+  colors[ImGuiCol_PlotLinesHovered] = softOrange;
+  colors[ImGuiCol_PlotHistogram] = vibrantOrange;
+  colors[ImGuiCol_PlotHistogramHovered] = softOrange;
 
-  // Navigation highlight
-  colors[ImGuiCol_NavHighlight] = radiantYellow;
+  // Menu bar
+  colors[ImGuiCol_MenuBarBg] = ImVec4(0.06f, 0.06f, 0.06f, 0.7f);
 
-  // Window styling
-  style.WindowPadding = ImVec2(8.0f, 8.0f);
-  style.FramePadding = ImVec2(4.0f, 3.0f);
-  style.ItemSpacing = ImVec2(8.0f, 4.0f);
-  style.ItemInnerSpacing = ImVec2(4.0f, 4.0f);
+  // Drag & Drop
+  colors[ImGuiCol_DragDropTarget] = ImVec4(vibrantOrange.x, vibrantOrange.y, vibrantOrange.z, 0.8f);
+
+  // Navigation
+  colors[ImGuiCol_NavHighlight] = vibrantOrange;
+
+  // Window styling (acrylic glass effect)
+  style.WindowPadding = ImVec2(10.0f, 10.0f);
+  style.FramePadding = ImVec2(5.0f, 4.0f);
+  style.ItemSpacing = ImVec2(10.0f, 5.0f);
+  style.ItemInnerSpacing = ImVec2(5.0f, 5.0f);
   style.TouchExtraPadding = ImVec2(0.0f, 0.0f);
   style.IndentSpacing = 21.0f;
-  style.ScrollbarSize = 14.0f;
-  style.GrabMinSize = 10.0f;
+  style.ScrollbarSize = 16.0f;
+  style.GrabMinSize = 12.0f;
     
-  // Rounding
-  style.WindowRounding = 4.0f;
-  style.ChildRounding = 3.0f;
-  style.FrameRounding = 3.0f;
-  style.PopupRounding = 3.0f;
-  style.ScrollbarRounding = 3.0f;
-  style.GrabRounding = 3.0f;
-  style.TabRounding = 3.0f;
+  // Rounding (smooth acrylic edges)
+  style.WindowRounding = 8.0f;
+  style.ChildRounding = 6.0f;
+  style.FrameRounding = 5.0f;
+  style.PopupRounding = 6.0f;
+  style.ScrollbarRounding = 9.0f;
+  style.GrabRounding = 5.0f;
+  style.TabRounding = 6.0f;
+  
+  // Transparency settings
+  style.Alpha = 0.98f;
+  style.WindowBorderSize = 1.0f;
+  style.FrameBorderSize = 0.0f;
 }
 
 } // namespace plaster

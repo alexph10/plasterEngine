@@ -53,5 +53,18 @@ void Window::waitEvents() {
     glfwWaitEvents();
 }
 
+void Window::toggleFullscreen() {
+    m_isFullscreen = !m_isFullscreen;
+    
+    GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+    const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+    
+    if (m_isFullscreen) {
+        glfwSetWindowMonitor(m_window, monitor, 0, 0, mode->width, mode->height, mode->refreshRate);
+    } else {
+        glfwSetWindowMonitor(m_window, nullptr, 100, 100, 1920, 1080, 0);
+    }
+}
+
 } // namespace plaster
 
